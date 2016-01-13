@@ -1,5 +1,7 @@
 import urllib2
 import eyed3
+import os
+import sys
 
 def getData(name):
 	name = name.replace(' ', '+').replace('_', '+').lower()
@@ -10,14 +12,18 @@ def getData(name):
 
 	return ( unicode(track_name.read(),'utf-8'), unicode(artist_name.read(),'utf-8'), unicode(album_name.read(),'utf-8') )
 
-def autoTag(path, *data):
+folderPath = sys.argv[1]
+filesList = os.listdir(folderPath)
 
-	song = eyed3.load(path)
+pathsList = {}
+for file in filesList:
+    pathsList.update( {file[:-4] : folderPath+file} ) 
 
-	song.tag.title = data[0]
-	song.tag.artist = data[1]
-	song.tag.album = data[2]
+for songName in pathsList.keys():
+	song = eyed3.load(pathsList[songName])
+	metadata = getData(songName)
 
+	song.tag.title = metadata[0]
+	song.tag.artist = metadata[1]
+	song.tag.album = metadata[2]
 	song.tag.save()
-
-autoTag("/home/chait/Music/Sexy Back - Justin Timberlake.mp3", getData("Sexy Back - Justin Timberlake") )
