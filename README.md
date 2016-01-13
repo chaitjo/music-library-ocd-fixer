@@ -3,7 +3,7 @@ Python script that automatically fetches metadata for your music collection and 
 
 #Usage: 
 ```
-python tag.py [path to your music library]
+python fix.py [path to your music library]
 ```
 
 # To-do:
