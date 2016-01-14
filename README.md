@@ -7,7 +7,7 @@ Inspiration- <a href="http://www.urbandictionary.com/define.php?term=iOCD">iOCD<
 ```
 python fix.py [path to your music library]
 ```
-Example- `python fix.py /home/user/Music/`
+Example- Change directory to the location of `fix.py` and then use `python fix.py /home/user/Music/`.
 
 **To-do**: 
 
