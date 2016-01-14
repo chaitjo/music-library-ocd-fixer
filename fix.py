@@ -27,8 +27,8 @@ def modify(folderPath):
 		song.tag.album = metadata[2]
 		song.tag.save()	
 		os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
-		print("done")
+		print("Updated '{0}'".format(song.tag.artist+' - '+song.tag.title))
 
 if __name__=='__main__':
-	print("Hello!")
+	print("\nHello! This script will fix your music collection and calm your iOCD down...\n")
 	modify(sys.argv[1])
