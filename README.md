@@ -3,11 +3,12 @@ Python script that automatically fetches metadata for your music collection and 
 
 Inspiration- <a href="http://www.urbandictionary.com/define.php?term=iOCD">iOCD</a>
 
-**Usage**: 
+**Usage**:
+First change directory to the location of `fix.py`. Then use- 
 ```
 python fix.py [path to your music library]
 ```
-Example- Change directory to the location of `fix.py` and then use `python fix.py /home/user/Music/`.
+Example- `python fix.py /home/user/Music/`
 
 **To-do**: 
 
