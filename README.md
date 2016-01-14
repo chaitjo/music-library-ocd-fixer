@@ -1,10 +1,10 @@
 # Overview
-Music Library OCD fixer is a Python script that automatically fetches metadata for your music collection and renames files accordingly. It uses the <a href="http://rhythmsa.ga/">RhythSaga API</a> to fetch the metadata and <a href="http://eyed3.nicfit.net/">eyeD3</a> to change ID3 tags for mp3 files.
+Music Library OCD fixer is a Python script that automatically fetches metadata for your music collection and renames files accordingly. It uses the <a href="http://rhythmsa.ga/">RhythSaga API</a> to fetch the metadata and a module called <a href="http://eyed3.nicfit.net/">eyeD3</a> to change ID3 tags for mp3 files.
 
 **Inspiration- <a href="http://www.urbandictionary.com/define.php?term=iOCD">iOCD</a>**
 
 # Usage
-You must first install the eyeD3 Python module using the following command in a terminal:
+You must first install the eyeD3 module using the following command in a terminal:
 ```
 pip install eyed3
 ```
