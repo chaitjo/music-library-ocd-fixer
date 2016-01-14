@@ -8,8 +8,8 @@ Inspiration- <a href="http://www.urbandictionary.com/define.php?term=iOCD">iOCD<
 python fix.py [path to your music library]
 ```
 
-**To-do**:
+**To-do**: 
 
-1. rename files feature
+1. Add album art update feature.
 
-2. album artwork feature
+2. Make query used to fetch metadata smarter.

@@ -1,7 +1,4 @@
-import urllib2
-import eyed3
-import os
-import sys
+import os, sys, urllib2, eyed3
 
 def getData(name):
 	name = name.replace(' ', '+').replace('_', '+').lower()
@@ -22,13 +19,22 @@ def modify(folderPath):
 		song = eyed3.load(pathsList[songName])
 		metadata = getData(songName)
 
-		song.tag.title = metadata[0]
-		song.tag.artist = metadata[1]
-		song.tag.album = metadata[2]
-		song.tag.save()	
-		os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
-		print("Updated '{0}'".format(song.tag.artist+' - '+song.tag.title))
+		try:
+			song.tag.title = metadata[0]
+			song.tag.artist = metadata[1]
+			song.tag.album = metadata[2]
+			song.tag.save()
+			
+			os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
+			print("Updated '{0}'.".format(song.tag.artist+' - '+song.tag.title))
+
+		except TypeError:
+			print("No metadata found for '{0}'. Skipping it.".format(songName))
+
+		except AttributeError:
+			print("'{0}' is not an mp3 file. Skipping it.".format(songName))
 
 if __name__=='__main__':
 	print("\nHello! This script will fix your music collection and calm your iOCD down...\n")
 	modify(sys.argv[1])
+	print("\nAll done!\n")
