@@ -12,18 +12,23 @@ def getData(name):
 
 	return ( unicode(track_name.read(),'utf-8'), unicode(artist_name.read(),'utf-8'), unicode(album_name.read(),'utf-8') )
 
-folderPath = sys.argv[1]
-filesList = os.listdir(folderPath)
+def modify(folderPath):
+	filesList = os.listdir(folderPath)
+	pathsList = {}
+	for file in filesList:
+	    pathsList.update( {file[:-4] : folderPath+file} ) 
 
-pathsList = {}
-for file in filesList:
-    pathsList.update( {file[:-4] : folderPath+file} ) 
+	for songName in pathsList.keys():
+		song = eyed3.load(pathsList[songName])
+		metadata = getData(songName)
 
-for songName in pathsList.keys():
-	song = eyed3.load(pathsList[songName])
-	metadata = getData(songName)
+		song.tag.title = metadata[0]
+		song.tag.artist = metadata[1]
+		song.tag.album = metadata[2]
+		song.tag.save()	
+		os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
+		print("done")
 
-	song.tag.title = metadata[0]
-	song.tag.artist = metadata[1]
-	song.tag.album = metadata[2]
-	song.tag.save()
+if __name__=='__main__':
+	print("Hello!")
+	modify(sys.argv[1])
