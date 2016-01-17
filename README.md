@@ -4,7 +4,7 @@ Music Library OCD fixer is a Python script that automatically fetches metadata f
 **Inspiration- <a href="http://www.urbandictionary.com/define.php?term=iOCD">iOCD</a>**
 
 # Usage
-You must first install the eyeD3 and BeautifulSoup module using the following commands in a terminal:
+You must first install the eyeD3 and BeautifulSoup modules using the following commands in a terminal:
 ```
 pip install eyed3
 pip install beautifulsoup4
