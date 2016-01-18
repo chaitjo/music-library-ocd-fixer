@@ -5,7 +5,6 @@ Music Library OCD fixer by Chaitanya Joshi
 import os, sys, urllib2, eyed3, requests
 from bs4 import BeautifulSoup
 
-
 def getData(name):
 	"""
 	Method to make API queries using the name parameter, to fetch metadata.
@@ -14,24 +13,21 @@ def getData(name):
 	track_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=track_name&q={0}".format(name))
 	artist_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=artist_name&q={0}".format(name))
 	album_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=album_name&q={0}".format(name))
-	track_lyrics = getLyrics(artist_name, track_name)		#Names should be properly formatted
+	track_lyrics = getLyrics(artist_name, track_name)		#names should be properly formatted
 	return ( unicode(track_name.read(),'utf-8'), unicode(artist_name.read(),'utf-8'), unicode(album_name.read(),'utf-8') )
 
-def getLyrics(artistname, trackname):
+def getLyrics(artist_name, track_name):
+	"""
+	Method to extract lyrics of song from directlyrics.com.
 	"""
-	Method to extract lyrics of song from directlyrics.com
-	"""
-	artist_name = artistname
-	track_name = trackname
-
-	artistLi = artist_name.lower().split()
-	trackLi = track_name.lower().split()
+	artistList = artist_name.lower().split()
+	trackList = track_name.lower().split()
 
 	link = "http://www.directlyrics.com/" 
-	for el in range(0, len(artistLi)):
-		link = link + artistLi[el] + "-" 
-	for el in range(0, len(trackLi)):
-		link = link + trackLi[el] + "-"
+	for el in range(0, len(artistList)):
+		link = link + artistList[el] + "-" 
+	for el in range(0, len(trackList)):
+		link = link + trackList[el] + "-"
 	link = link + "lyrics.html"
 
 	r = requests.get("" + link)
@@ -49,7 +45,6 @@ def getLyrics(artistname, trackname):
 
 	s = s[indexStart:adStartIndex] + s[adEndIndex +1:indexEnd]
 	return s
-
 
 def modify(folderPath):
 	"""
