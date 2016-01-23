@@ -71,6 +71,10 @@ def modify(folderPath):
 			print("'{0}' is not an mp3 file. Skipping it.".format(songName))
 
 if __name__=='__main__':
+	if(len(sys.argv) < 2):
+		print("\nUse this script with the path to your music collection as the first argument")
+		print("\n --> python fix.py [path to your music library]")
+		sys.exit(1)
 	print("\nHello! This script will fix your music collection and calm your iOCD down...\n")
 	modify(sys.argv[1])
 	print("\nAll done!\n")
