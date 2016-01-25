@@ -3,21 +3,21 @@ Music Library OCD fixer by Chaitanya Joshi
 """
 
 import os, sys, urllib2, eyed3, requests
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
 def getData(name):
 	"""
 	Method to make API queries using the name parameter, to fetch metadata.
 	"""
-	name = name.replace(' ', '+').replace('_', '+').lower()		#make name variable devoid of crap like [lyrics], [hd], etc.
+	name = name.replace(' ', '+').replace('_', '+').lower()		# Make name variable devoid of crap like [lyrics], [hd], etc.
 	track_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=track_name&q={0}".format(name))
 	artist_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=artist_name&q={0}".format(name))
 	album_name = urllib2.urlopen("http://rhythmsa.ga/api.php?api=album_name&q={0}".format(name))
-	track_lyrics = getLyrics(artist_name, track_name)		#names should be properly formatted
+	track_lyrics = getLyrics(artist_name, track_name)		# Names should be properly formatted
 	return ( unicode(track_name.read(),'utf-8'), unicode(artist_name.read(),'utf-8'), unicode(album_name.read(),'utf-8'), unicode(track_lyrics, 'utf-8') )
 
 def getLyrics(artist_name, track_name):
-	"""
+	"""
 	Method to extract lyrics of song from directlyrics.com.
 	"""
 	artistList = artist_name.lower().split()
@@ -51,7 +51,7 @@ def modify(folderPath):
 	Method to update metadata and rename all mp3 files in folderPath.
 	"""
 	filesList = os.listdir(folderPath)
-	pathsList = {}		#a dictionary mapping the name of a file to its complete path
+	pathsList = {}		# A dictionary mapping the name of a file to its complete path
 	for file in filesList:
 	    pathsList.update( {file[:-4] : folderPath+file} ) 
 
@@ -62,6 +62,8 @@ def modify(folderPath):
 			song.tag.title = metadata[0]
 			song.tag.artist = metadata[1]
 			song.tag.album = metadata[2]
+			#song.tag.lyrics = metadata[3]
+			# ^ This tag doesn't seem to work. Might be something to do with lyrics being a formatted string.
 			song.tag.save()
 			os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
 			print("Updated '{0}'.".format(song.tag.artist+' - '+song.tag.title))
@@ -72,8 +74,7 @@ def modify(folderPath):
 
 if __name__=='__main__':
 	if(len(sys.argv) < 2):
-		print("\nUse this script with the path to your music collection as the first argument")
-		print("\n --> python fix.py [path to your music library]")
+		print("\nUse this script with the path to your music collection as the first argument. Try again!\n--> python fix.py [path to your music library]\n")
 		sys.exit(1)
 	print("\nHello! This script will fix your music collection and calm your iOCD down...\n")
 	modify(sys.argv[1])
