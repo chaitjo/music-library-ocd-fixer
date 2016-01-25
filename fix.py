@@ -3,7 +3,7 @@ Music Library OCD fixer by Chaitanya Joshi
 """
 
 import os, sys, urllib2, eyed3, requests
-#from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 def getData(name):
 	"""
