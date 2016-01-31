@@ -64,7 +64,6 @@ def modify(folderPath):
 			song.tag.album = metadata[2]
 			#song.tag.lyrics = metadata[3]
 			# ^ This tag doesn't seem to work. Might be something to do with lyrics being a formatted string.
-			#song.tag.images.set(3, getAlbumArt(), "image/jpeg", u"You can put a description here.")
 			song.tag.save()
 			os.rename(pathsList[songName], folderPath+song.tag.artist+' - '+song.tag.title+'.mp3')
 			print("Updated '{0}'.".format(song.tag.artist+' - '+song.tag.title))
