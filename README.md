@@ -22,5 +22,5 @@ python fix.py /home/user/Music/
 ```
 
 # To-do
-1. Add album art feature.
-2. Make query used to fetch metadata smarter.
+* [ ] Add album art feature.
+* [ ] Make query used to fetch metadata smarter.
